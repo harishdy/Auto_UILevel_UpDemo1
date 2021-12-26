@@ -15,11 +15,36 @@ class ViewController: UIViewController {
     }
 
     func setupView(){
-        let nameLabel = makeLabel(withText:"Name")
-        let textField = makeTextField(withPlaceHolderText: "Enter Name")
+        let image = makeImageView(named: "2387027")
+        let nameLabel = makeLabel(withText:"Title")
+        let button = makeButon(withText: "Get Started")
+        view.addSubview(image)
         view.addSubview(nameLabel)
-        view.addSubview(textField)
+        view.addSubview(button)
+        
+        // imageView by themselves have intrinsic size\\
+        
+//        image.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        image.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//
+        image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        image.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 5).isActive = true
+        image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+//        image.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+//        image.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 200).isActive = true
+//        image.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 90).isActive = true
+//
+        nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        
+        button.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 300).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
 /*          ****label Content Hugging & compression Resistance****
+        let textField = makeTextField(withPlaceHolderText: "Enter Name")
+        view.addSubview(textField)
  
         nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
@@ -51,8 +76,10 @@ class ViewController: UIViewController {
     public func makeImageView(named: String)-> UIImageView{
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleToFill
         view.image = UIImage(named: named)
+        view.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .vertical)
+        view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 749), for: .vertical)
         return view
     }
     
